@@ -1,0 +1,83 @@
+<html  ng-app = "myapp">
+        <head>
+            <meta charset="ISO-8859-1">
+               <!--script>document.write('<base href="/" />');</script>      
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                          <link rel="icon" type="image/x-icon" href="favicon.ico">
+                           <link rel="stylesheet" href="styles.css">
+                            <script src="https://unpkg.com/core-js/client/shim.min.js"></script>
+                            <script src="https://unpkg.com/zone.js@0.7.4?main=browser"></script>
+                            <script src="https://unpkg.com/systemjs@0.19.39/dist/system.src.js"></script>
+                            <script src="systemjs.config.js"></script>
+                            <script>
+                            System.import('main.js').catch(function(err){ console.error(err); });
+                </script-->
+                <script src="jquery.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+                <script src="angular-modal-service.js"></script>
+                <script src="bootstrap.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+            	<script src="teamscontroller.js"></script>
+                <script type="text/javascript">
+
+                var myapp = angular.module('myapp', []);
+                 myapp.controller('demoController', function($scope, $http){
+
+                    $http.get("https://doc5.xicod.com/admin.php?person_type=surfer").success(function(response) {
+                     $scope.names = response;
+                });
+                 });
+                 </script>
+
+<title>BEACH UP </title>
+</head>
+<body ng-controller="demoController" background="./waterMelon.jpg">
+    <style>
+    .myTable {
+        font-size:35px;
+        font-type:Ariel black;
+		border: 3px solid black;
+		text-align:center;
+		padding: 15px;
+    } 
+	    .title1 {
+        font-size:61px;
+        font-type:Verdina;
+		text-align:center;
+		padding: 15px;
+		color:green;
+		text-decoration: underline;
+
+		letter-spacing: 3px;
+		
+    }        
+    </style>
+    
+     <h2 class="title1">Family Day</h2>
+    <table class="myTable" cellpadding="2" cellspacing="4" border="1" bgcolor="white">
+        <tr>
+            <th>Name</th>
+            <th>District</th>
+            <th>Heat Level</th>
+            <th>Minimum waves height</th>
+            <th>Maximum waves height</th>   
+            <th>Maximum wind speed</th>
+            <th>Warning</th>
+        </tr>
+        <tr ng-repeat="item in names track by $index">
+           <td> {{item.name}} </td>
+           <td> {{item.district_id}} </td>
+           <td> {{item.heat_index_id}} </td>         
+           <td> {{item.waves_height_min}} </td>         
+           <td> {{item.waves_height_max}} </td>           
+           <td> {{item.wind_speed_max}} </td>         
+           <td> {{item.warnings}} </td>           
+        </tr>
+      
+    </table>
+	
+	<a href="./BeachUpMain.html"><font color="green" size=30 align=center>GO BACK > > </font> </a>
+    </body>
+</html>
+
+
